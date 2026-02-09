@@ -3,57 +3,45 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { firebaseConfig } from './firebaseConfig.js';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCEaP3U6pOjNyoMKgNDRl2akWjPYZygIHY',
-  authDomain: 'final-library-holding.firebaseapp.com',
-  projectId: 'final-library-holding',
-  storageBucket: 'final-library-holding.appspot.com',
-  messagingSenderId: '1039508541227',
-  appId: '1:1039508541227:web:4673a5b5d92e4c987e7f6e',
-};
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const submit = document.getElementById('submit');
-const statusDiv = document.getElementById('loginStatus');
+// DOM Elements
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const loginForm = document.getElementById('loginForm');
+const loginStatus = document.getElementById('loginStatus');
 
-submit.addEventListener('click', function (event) {
-  event.preventDefault();
+// Email/Password Login
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  statusDiv.textContent = ''; // clear previous message
-  statusDiv.style.color = '';
-
-  if (email === '' || password === '') {
-    statusDiv.textContent = 'Please fill out all required fields';
-    statusDiv.style.color = 'red';
+  if (!email || !password) {
+    loginStatus.textContent = 'Please enter both email and password.';
+    loginStatus.style.color = 'red';
     return;
   }
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+    const user = userCredential.user;
+    loginStatus.textContent = `Welcome, ${user.email}! Redirecting...`;
+    loginStatus.style.color = 'green';
 
-      statusDiv.textContent = 'Login Successful! Redirecting...';
-      statusDiv.style.color = 'green';
-
-      document.getElementById('email').value = '';
-      document.getElementById('password').value = '';
-
-      setTimeout(() => {
-        window.location.href = '../Books/AddBooks/RecordBook.html';
-      }, 1000);
-    })
-    .catch((error) => {
-      statusDiv.textContent = 'Login Failed';
-      statusDiv.style.color = 'red';
-    });
-});
-
-window.addEventListener('load', function () {
-  document.getElementById('loginForm').reset();
+    setTimeout(() => {
+      window.location.href = 'dashboard.html'; // Change to your dashboard page
+    }, 1500);
+  } catch (error) {
+    loginStatus.textContent = 'Invalid email or password.';
+    loginStatus.style.color = 'red';
+  }
 });

@@ -1,27 +1,26 @@
 <!doctype html>
-
 <html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Librarian Login</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Google Fonts: Noto Serif & Noto Sans -->
+
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
     <!-- Material Symbols -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script id="tailwind-config">
+
+    <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
@@ -45,6 +44,7 @@
         },
       };
     </script>
+
     <style>
       body {
         font-family: 'Noto Sans', sans-serif;
@@ -57,26 +57,25 @@
       }
     </style>
   </head>
+
   <body
     class="bg-background-light dark:bg-background-dark flex min-h-screen items-center justify-center p-4"
   >
-    <!-- Main Container Card -->
+    <!-- Main Card -->
     <div
-      class="flex min-h-[600px] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl md:flex-row dark:bg-slate-900"
+      class="flex w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl md:flex-row dark:bg-slate-900"
     >
-      <!-- Left Side: Visual/Image (Hidden on mobile) -->
+      <!-- Left Side Image -->
       <div class="group relative hidden overflow-hidden md:flex md:w-1/2">
         <div
           class="bg-primary/10 absolute inset-0 z-10 mix-blend-multiply"
         ></div>
         <div
-          class="h-full w-full bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
-          data-alt="Interior view of modern library bookshelves in soft focus"
+          class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
           style="
             background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDk_WydMnLl8MtvkmrBw-qb29mAbnEZP2-1RoiaurAix1mKe0Hit-J5DpV1IwTMxM8uJJq9NUgbXeS8tDh-GzDq8j1E7Tv63XpP-S96gTTIIxhBRN58HyQQN8kxfcBATJgKNy6Ji3CljIoY9lPNdeexv45BxIxeWCbA-XU8CsYq2TTnaDQS-Ol32mYbgchLhYu2CFLhuS57mKyQX5OKfXLZIRG8XTfksbRabZC4bp_E-c_p9HjOjYcURc_Qzt7k1zNQ0JVSYvD2_T4');
           "
         ></div>
-        <!-- Overlay Text/Branding -->
         <div class="absolute bottom-12 left-12 z-20 text-white">
           <div class="mb-4 flex items-center gap-2">
             <span class="material-symbols-outlined text-4xl"
@@ -91,7 +90,8 @@
           </p>
         </div>
       </div>
-      <!-- Right Side: Login Form -->
+
+      <!-- Right Side Login Form -->
       <div class="flex w-full flex-col justify-center p-8 md:w-1/2 lg:p-16">
         <div class="mx-auto w-full max-w-md">
           <!-- Header -->
@@ -102,15 +102,16 @@
               Librarian Login
             </h1>
             <p class="text-base text-slate-500 dark:text-slate-400">
-              Welcome back! Please enter your administrative credentials to
-              access the system.
+              Welcome back! Please enter your credentials to access the system.
             </p>
           </div>
+
           <!-- Form -->
-          <form action="#" class="space-y-6">
-            <!-- Email Field -->
+          <form class="space-y-6" id="loginForm">
+            <!-- Email -->
             <div class="flex flex-col gap-2">
               <label
+                for="email"
                 class="ml-1 text-sm font-semibold text-slate-700 dark:text-slate-300"
                 >Email Address</label
               >
@@ -121,22 +122,24 @@
                 >
                 <input
                   id="email"
-                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-                  placeholder="e.g., jane.doe@library.com"
                   type="email"
+                  placeholder="e.g., jane.doe@library.com"
+                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 />
               </div>
             </div>
-            <!-- Password Field -->
+
+            <!-- Password -->
             <div class="flex flex-col gap-2">
               <div class="flex items-center justify-between px-1">
                 <label
+                  for="password"
                   class="text-sm font-semibold text-slate-700 dark:text-slate-300"
                   >Password</label
                 >
                 <a
-                  class="text-primary text-xs font-medium hover:underline"
                   href="#"
+                  class="text-primary text-xs font-medium hover:underline"
                   >Forgot Password?</a
                 >
               </div>
@@ -147,30 +150,31 @@
                 >
                 <input
                   id="password"
-                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-                  placeholder="Enter your secure password"
                   type="password"
+                  placeholder="Enter your secure password"
+                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 />
               </div>
             </div>
+
             <!-- Remember Me -->
             <div class="flex items-center gap-2 px-1">
               <input
-                class="text-primary focus:ring-primary h-4 w-4 rounded border-slate-300"
                 id="remember"
                 type="checkbox"
+                class="text-primary focus:ring-primary h-4 w-4 rounded border-slate-300"
               />
               <label
-                class="text-sm text-slate-600 dark:text-slate-400"
                 for="remember"
+                class="text-sm text-slate-600 dark:text-slate-400"
                 >Keep me logged in for 30 days</label
               >
             </div>
+
             <!-- Submit Button -->
             <button
-              class="bg-primary hover:bg-primary/90 shadow-primary/20 flex h-14 w-full items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-lg transition-all active:scale-[0.98]"
-              id="submit"
               type="submit"
+              class="bg-primary hover:bg-primary/90 flex h-14 w-full items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-lg transition-all active:scale-[0.98]"
             >
               Access Portal
               <span class="material-symbols-outlined text-xl"
@@ -178,19 +182,17 @@
               >
             </button>
           </form>
-          <!-- Support Footer -->
+
+          <!-- Status -->
           <div
-            class="mt-12 border-t border-slate-100 pt-8 text-center dark:border-slate-800"
-          >
-            <div
-              id="loginStatus"
-              style="margin-top: 10px; font-weight: bold"
-            ></div>
-          </div>
+            id="loginStatus"
+            class="mt-6 text-center text-sm font-semibold"
+          ></div>
         </div>
       </div>
     </div>
-    <!-- Theme Toggle (Floating) -->
+
+    <!-- Theme Toggle -->
     <div class="fixed right-6 bottom-6 flex flex-col gap-3">
       <button
         class="rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-lg transition-all hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
@@ -204,6 +206,7 @@
         >
       </button>
     </div>
+
+    <script type="module" src="./login.js"></script>
   </body>
-  <script type="module" src="Login.js"></script>
 </html>

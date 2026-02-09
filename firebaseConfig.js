@@ -1,9 +1,10 @@
-// firebaseConfig.js
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCEaP3U6pOjNyoMKgNDRl2akWjPYZygIHY',
-  authDomain: 'final-library-holding.firebaseapp.com',
-  projectId: 'final-library-holding',
-  storageBucket: 'final-library-holding.appspot.com',
-  messagingSenderId: '1039508541227',
-  appId: '1:1039508541227:web:4673a5b5d92e4c987e7f6',
+  apiKey: 'AIzaSyAh6gTmwbhETkBIWgKDsBS-ItoxnMmxelw',
+  authDomain: 'monarch-a11f9.firebaseapp.com',
+  databaseURL: 'https://monarch-a11f9-default-rtdb.firebaseio.com',
+  projectId: 'monarch-a11f9',
+  storageBucket: 'monarch-a11f9.firebasestorage.app',
+  messagingSenderId: '55880332428',
+  appId: '1:55880332428:web:c969656ff5da003a5e37a9',
+  measurementId: 'G-S03G3L1B9T',
 };
