@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Libra | Modern Book Holdings</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./RecordBook.css" />
+  </head>
+  <body class="text-slate-800 antialiased">
+    <aside
+      id="for"
+      class="fixed top-0 left-0 z-50 flex h-full w-80 flex-col space-y-6 overflow-y-auto border-r border-slate-200 bg-white/80 p-6 backdrop-blur-xl"
+    >
+      <div class="mb-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div
+            class="bg-primary shadow-primary/30 flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-lg"
+          >
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h2 class="text-dark text-xl font-bold tracking-tight">LIBRA</h2>
+        </div>
+        <button id="closeMenu" class="hover:text-dark text-slate-400 md:hidden">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label
+            class="mb-3 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
+            >Academic Programs</label
+          >
+          <div class="programs grid grid-cols-1 gap-2">
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="BSIS"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >Bachelor of Science in IS</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="CRIM"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >Criminology</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="INTREP"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >Entrepreneurship</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="AGRICULTURE"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >Agriculture</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input type="checkbox" name="course" value="BPA" class="hidden" />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >BPA</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="MIDWIFERY"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >Midwifery</span
+              >
+            </label>
+            <label class="course-chip cursor-pointer">
+              <input
+                type="checkbox"
+                name="course"
+                value="GENERAL ACADEMIC"
+                class="hidden"
+              />
+              <span
+                class="block rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-all hover:bg-slate-50"
+                >General Academic</span
+              >
+            </label>
+          </div>
+        </div>
+
+        <hr class="border-slate-100" />
+
+        <div class="space-y-4">
+          <div>
+            <label class="mb-1 block text-xs font-semibold text-slate-500"
+              >Program Year</label
+            >
+            <select
+              id="Year"
+              class="focus:ring-primary focus:border-primary w-full rounded-lg border-slate-200 text-sm"
+            >
+              <option value="1st Yr - 1st Sem">1st Yr - 1st Sem</option>
+              <option value="1st Yr - 2nd Sem">1st Yr - 2nd Sem</option>
+              <option value="2nd Yr - 1st Sem">2nd Yr - 1st Sem</option>
+              <option value="2nd Yr - 2nd Sem">2nd Yr - 2nd Sem</option>
+              <option value="3rd Yr - 1st Sem">3rd Yr - 1st Sem</option>
+              <option value="3rd Yr - 2nd Sem">3rd Yr - 2nd Sem</option>
+              <option value="4th Yr - 1st Sem">4th Yr - 1st Sem</option>
+              <option value="4th Yr - 2nd Sem">4th Yr - 2nd Sem</option>
+            </select>
+          </div>
+          <div class="w-full max-w-md space-y-2">
+            <!-- Label -->
+            <label class="block text-sm font-medium text-gray-700">
+              Subject
+            </label>
+
+            <!-- Search input -->
+            <input
+              type="text"
+              id="subjectSearch"
+              placeholder="Search subject..."
+              class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm placeholder-gray-400 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+            />
+
+            <!-- Select box -->
+            <select
+              id="Subject"
+              size="6"
+              required
+              class="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+            >
+              <!-- options here -->
+            </select>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="ml-0 p-6 transition-all md:ml-80 lg:p-12">
+      <header
+        class="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+      >
+        <div class="flex items-start gap-4">
+          <button
+            id="menu"
+            class="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition-all hover:bg-slate-50 active:scale-95 md:hidden"
+          >
+            <i class="fas fa-bars text-lg"></i>
+          </button>
+
+          <div class="space-y-1">
+            <h1
+              class="text-2xl leading-none font-black tracking-tight text-slate-900 md:text-3xl"
+            >
+              Acquisition <span class="text-primary">Management</span>
+            </h1>
+            <p class="text-sm font-medium text-slate-500 md:text-base">
+              Register new books into the
+              <span class="font-semibold text-slate-800">holding system</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <a
+            href="#"
+            class="group bg-primary relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl px-8 py-3.5 font-bold text-white shadow-[0_10px_20px_-10px_rgba(25,127,230,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(25,127,230,0.6)] active:scale-95 md:w-auto"
+          >
+            <span class="tracking-wide">Journal</span>
+          </a>
+        </div>
+      </header>
+
+      <div
+        class="glass-card mx-auto max-w-4xl rounded-[2rem] p-8 shadow-xl shadow-slate-200/60 lg:p-10"
+      >
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div class="space-y-6">
+            <h3 class="text-dark flex items-center gap-2 text-lg font-bold">
+              <i class="fas fa-info-circle text-primary"></i> General
+              Information
+            </h3>
+
+            <div class="space-y-4">
+              <div class="group">
+                <label
+                  class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                  >Book Title</label
+                >
+                <input
+                  type="text"
+                  id="BookName"
+                  placeholder="Enter book title"
+                  class="focus:ring-primary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:bg-white focus:ring-2"
+                  required
+                />
+              </div>
+              <div class="group">
+                <label
+                  class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                  >Lead Author</label
+                >
+                <input
+                  type="text"
+                  id="author"
+                  placeholder="Full name of author"
+                  class="focus:ring-primary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:bg-white focus:ring-2"
+                  required
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                    >Call Number</label
+                  >
+                  <input
+                    type="text"
+                    id="CallNumber"
+                    placeholder="e.g. QA 76.9"
+                    class="focus:ring-primary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:ring-2"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                    >Book Year</label
+                  >
+                  <input
+                    type="text"
+                    id="recency"
+                    placeholder="YYYY"
+                    pattern="\d{4}"
+                    class="focus:ring-primary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:ring-2"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-dark flex items-center gap-2 text-lg font-bold">
+              <i class="fas fa-archive text-secondary"></i> Inventory & Storage
+            </h3>
+
+            <div class="space-y-4">
+              <div>
+                <label
+                  class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                  >Place of Publication</label
+                >
+                <input
+                  type="text"
+                  id="PlaceofPublication"
+                  placeholder="City, Country"
+                  class="focus:ring-secondary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:ring-2"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                    >Type</label
+                  >
+                  <select
+                    id="type"
+                    class="focus:ring-secondary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:ring-2"
+                  >
+                    <option value="Textbook">Textbook</option>
+                    <option value="Reference Book">Reference Book</option>
+                    <option value="E-book">E-book</option>
+                    <option value="Book">Book</option>
+                    <option value="Scholarly Books">Scholarly Books</option>
+                    <option value="Fiction Books">Fiction Books</option>
+                    <option value="Non-Fiction Books" class="whitespace-nowrap">
+                      Non-Fiction Books
+                    </option>
+                    <option value="Biographies">Biographies</option>
+                    <option value="Poetry Books">Poetry Books</option>
+                    <option value="Cookbooks">Cookbooks</option>
+                    <option value="Self-Help Books">Self-Help Books</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                    >Volume</label
+                  >
+                  <input
+                    type="text"
+                    id="Volume"
+                    placeholder="e.g. Vol 1"
+                    class="focus:ring-secondary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:ring-2"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  class="mb-1 block text-xs font-bold text-slate-400 uppercase"
+                  >Shelf Location</label
+                >
+                <input
+                  type="text"
+                  id="Location"
+                  placeholder="Section A-1"
+                  class="focus:ring-secondary/20 w-full rounded-xl border-slate-200 bg-slate-50 px-4 py-3 transition-all focus:ring-2"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <button
+            id="save"
+            class="from-primary to-secondary shadow-primary/20 hover:shadow-primary/30 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
+          >
+            <i class="fas fa-cloud-upload-alt"></i> SAVE ACQUISITION
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h4
+          class="mb-6 text-sm font-bold tracking-widest text-slate-400 uppercase"
+        >
+          Program Viewers
+        </h4>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
+          <a
+            href=".././BSIS/Bsis.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="group-hover:bg-primary mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-sky-50 text-sky-500 transition-all group-hover:text-white"
+            >
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <span class="text-xs font-bold">BSIS</span>
+          </a>
+
+          <a
+            href=".././CRIM/CRIM.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-red-50 text-red-500 transition-all group-hover:bg-red-500 group-hover:text-white"
+            >
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <span class="text-xs font-bold">CRIM</span>
+          </a>
+
+          <a
+            href=".././ENTREP/Entrep.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-amber-50 text-amber-500 transition-all group-hover:bg-amber-500 group-hover:text-white"
+            >
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <span class="text-xs font-bold">ENTREP</span>
+          </a>
+
+          <a
+            href=".././AGRICULTURE/Agriculture.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-500 transition-all group-hover:bg-emerald-500 group-hover:text-white"
+            >
+              <i class="fas fa-seedling"></i>
+            </div>
+            <span class="text-xs font-bold">AGRIC</span>
+          </a>
+
+          <a
+            href=".././MIDWIFERY/MID.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-pink-50 text-pink-500 transition-all group-hover:bg-pink-500 group-hover:text-white"
+            >
+              <i class="fas fa-baby"></i>
+            </div>
+            <span class="text-xs font-bold">MIDWIFERY</span>
+          </a>
+
+          <a
+            href=".././BPA/BPA.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-purple-50 text-purple-500 transition-all group-hover:bg-purple-500 group-hover:text-white"
+            >
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <span class="text-xs font-bold">BPA</span>
+          </a>
+
+          <a
+            href="/Books/GENERALACAD/GeneralAca.html"
+            class="hover:border-primary/30 group rounded-2xl border border-slate-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
+          >
+            <div
+              class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-500 transition-all group-hover:bg-gray-500 group-hover:text-white"
+            >
+              <i class="fas fa-book-open"></i>
+            </div>
+            <span class="text-xs font-bold">GENERAL ACAD</span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./RecordBook.js"></script>
+  </body>
+</html>

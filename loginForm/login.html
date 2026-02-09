@@ -1,0 +1,209 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Modern Librarian Login</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Noto Serif & Noto Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#144bb8',
+              'background-light': '#f6f6f8',
+              'background-dark': '#111621',
+            },
+            fontFamily: {
+              display: ['Noto Serif', 'serif'],
+              sans: ['Noto Sans', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .font-display {
+        font-family: 'Noto Serif', serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark flex min-h-screen items-center justify-center p-4"
+  >
+    <!-- Main Container Card -->
+    <div
+      class="flex min-h-[600px] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl md:flex-row dark:bg-slate-900"
+    >
+      <!-- Left Side: Visual/Image (Hidden on mobile) -->
+      <div class="group relative hidden overflow-hidden md:flex md:w-1/2">
+        <div
+          class="bg-primary/10 absolute inset-0 z-10 mix-blend-multiply"
+        ></div>
+        <div
+          class="h-full w-full bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
+          data-alt="Interior view of modern library bookshelves in soft focus"
+          style="
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDk_WydMnLl8MtvkmrBw-qb29mAbnEZP2-1RoiaurAix1mKe0Hit-J5DpV1IwTMxM8uJJq9NUgbXeS8tDh-GzDq8j1E7Tv63XpP-S96gTTIIxhBRN58HyQQN8kxfcBATJgKNy6Ji3CljIoY9lPNdeexv45BxIxeWCbA-XU8CsYq2TTnaDQS-Ol32mYbgchLhYu2CFLhuS57mKyQX5OKfXLZIRG8XTfksbRabZC4bp_E-c_p9HjOjYcURc_Qzt7k1zNQ0JVSYvD2_T4');
+          "
+        ></div>
+        <!-- Overlay Text/Branding -->
+        <div class="absolute bottom-12 left-12 z-20 text-white">
+          <div class="mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-4xl"
+              >local_library</span
+            >
+            <span class="font-display text-2xl font-bold tracking-tight"
+              >Athenaeum IMS</span
+            >
+          </div>
+          <p class="max-w-xs text-lg font-light opacity-90">
+            Managing the world's knowledge, one record at a time.
+          </p>
+        </div>
+      </div>
+      <!-- Right Side: Login Form -->
+      <div class="flex w-full flex-col justify-center p-8 md:w-1/2 lg:p-16">
+        <div class="mx-auto w-full max-w-md">
+          <!-- Header -->
+          <div class="mb-10 text-center md:text-left">
+            <h1
+              class="mb-3 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white"
+            >
+              Librarian Login
+            </h1>
+            <p class="text-base text-slate-500 dark:text-slate-400">
+              Welcome back! Please enter your administrative credentials to
+              access the system.
+            </p>
+          </div>
+          <!-- Form -->
+          <form action="#" class="space-y-6">
+            <!-- Email Field -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="ml-1 text-sm font-semibold text-slate-700 dark:text-slate-300"
+                >Email Address</label
+              >
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute top-1/2 left-4 -translate-y-1/2 text-xl text-slate-400"
+                  >mail</span
+                >
+                <input
+                  id="email"
+                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  placeholder="e.g., jane.doe@library.com"
+                  type="email"
+                />
+              </div>
+            </div>
+            <!-- Password Field -->
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between px-1">
+                <label
+                  class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                  >Password</label
+                >
+                <a
+                  class="text-primary text-xs font-medium hover:underline"
+                  href="#"
+                  >Forgot Password?</a
+                >
+              </div>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute top-1/2 left-4 -translate-y-1/2 text-xl text-slate-400"
+                  >lock</span
+                >
+                <input
+                  id="password"
+                  class="focus:ring-primary/20 focus:border-primary h-14 w-full rounded-lg border border-slate-200 bg-slate-50 pr-4 pl-12 text-slate-900 transition-all outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  placeholder="Enter your secure password"
+                  type="password"
+                />
+              </div>
+            </div>
+            <!-- Remember Me -->
+            <div class="flex items-center gap-2 px-1">
+              <input
+                class="text-primary focus:ring-primary h-4 w-4 rounded border-slate-300"
+                id="remember"
+                type="checkbox"
+              />
+              <label
+                class="text-sm text-slate-600 dark:text-slate-400"
+                for="remember"
+                >Keep me logged in for 30 days</label
+              >
+            </div>
+            <!-- Submit Button -->
+            <button
+              class="bg-primary hover:bg-primary/90 shadow-primary/20 flex h-14 w-full items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-lg transition-all active:scale-[0.98]"
+              id="submit"
+              type="submit"
+            >
+              Access Portal
+              <span class="material-symbols-outlined text-xl"
+                >arrow_forward</span
+              >
+            </button>
+          </form>
+          <!-- Support Footer -->
+          <div
+            class="mt-12 border-t border-slate-100 pt-8 text-center dark:border-slate-800"
+          >
+            <div
+              id="loginStatus"
+              style="margin-top: 10px; font-weight: bold"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Theme Toggle (Floating) -->
+    <div class="fixed right-6 bottom-6 flex flex-col gap-3">
+      <button
+        class="rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-lg transition-all hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+        onclick="document.documentElement.classList.toggle('dark')"
+      >
+        <span class="material-symbols-outlined block dark:hidden"
+          >dark_mode</span
+        >
+        <span class="material-symbols-outlined hidden dark:block"
+          >light_mode</span
+        >
+      </button>
+    </div>
+  </body>
+  <script type="module" src="Login.js"></script>
+</html>
