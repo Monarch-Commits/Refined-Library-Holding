@@ -1,10 +1,10 @@
 export const firebaseConfig = {
-  apiKey: import.meta.env.FIREBASE_API_KEY,
-  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: import.meta.env.FIREBASE_DATABASE_URL,
-  projectId: import.meta.env.FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.FIREBASE_APP_ID,
-  measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID,
+  apiKey: 'AIzaSyAh6gTmwbhETkBIWgKDsBS-ItoxnMmxelw',
+  authDomain: 'monarch-a11f9.firebaseapp.com',
+  databaseURL: 'https://monarch-a11f9-default-rtdb.firebaseio.com',
+  projectId: 'monarch-a11f9',
+  storageBucket: 'monarch-a11f9.firebasestorage.app',
+  messagingSenderId: '55880332428',
+  appId: '1:55880332428:web:c969656ff5da003a5e37a9',
+  measurementId: 'G-S03G3L1B9T',
 };

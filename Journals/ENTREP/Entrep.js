@@ -281,7 +281,7 @@ function renderPagination() {
 
   for (let i = 1; i <= totalPages; i++) {
     const btn = document.createElement('button');
-    btn.className = `pageBtn flex h-8 w-8 items-center justify-center rounded text-xs font-bold transition-all ${
+    btn.className = `pageBtn  hidden sm:flex h-8 w-8 items-center justify-center rounded text-xs font-bold transition-all ${
       i === currentPage
         ? 'bg-primary text-white shadow-md scale-110'
         : 'border border-slate-200 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-800'
