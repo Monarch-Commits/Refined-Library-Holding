@@ -24,7 +24,7 @@ logoutButton.addEventListener('click', function () {
     signOut(auth)
       .then(() => {
         alert('Successfully logged out');
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
       })
       .catch((error) => {
         alert(error.message);
@@ -79,7 +79,7 @@ function add() {
   }
 
   const promises = selectedCourses.map((course) => {
-    return push(ref(db, `Books/${course}/${selectedYear}`), {
+    return push(ref(db, `Journals/${course}/${selectedYear}`), {
       CallNumber,
       bookName,
       Subject,

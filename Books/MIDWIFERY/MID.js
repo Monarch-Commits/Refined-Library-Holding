@@ -7,11 +7,16 @@ import {
   update,
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
 import { firebaseConfig } from '../../firebaseConfig.js';
+import {
+  getAuth,
+  onAuthStateChanged,
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const bsisRef = ref(db, 'Books/MIDWIFERY');
+const auth = getAuth(app);
 
 // DOM Elements
 const tableBody = document.getElementById('bsisTable');
@@ -37,36 +42,47 @@ const booksPerPage = 10;
 // -------------------
 // FETCH DATA FROM FIREBASE
 // -------------------
-onValue(bsisRef, (snapshot) => {
-  if (!snapshot.exists()) {
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="11" class="px-6 py-6 text-center text-slate-400">
-          No BSIS records found
-        </td>
-      </tr>`;
-    books = [];
-    filteredBooks = [];
-    renderTablePage();
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert('Not authenticated. Redirecting to login.');
+    window.location.href = '../../login/login.html';
     return;
   }
 
-  const rawData = snapshot.val();
-  books = [];
-  for (const year in rawData) {
-    for (const id in rawData[year]) {
-      books.push({
-        bookId: id,
-        year,
-        ...rawData[year][id],
-      });
-    }
-  }
+  console.log('Authenticated UID:', user.uid);
 
-  document.getElementById('totalVolume').textContent = books.length;
-  filteredBooks = [...books];
-  currentPage = 1;
-  renderTablePage();
+  onValue(bsisRef, (snapshot) => {
+    if (!snapshot.exists()) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="11" class="px-6 py-6 text-center text-slate-400">
+            No MID records found
+          </td>
+        </tr>`;
+      books = [];
+      filteredBooks = [];
+      renderTablePage();
+      return;
+    }
+
+    const rawData = snapshot.val();
+    books = [];
+
+    for (const year in rawData) {
+      for (const id in rawData[year]) {
+        books.push({
+          bookId: id,
+          year,
+          ...rawData[year][id],
+        });
+      }
+    }
+
+    document.getElementById('totalVolume').textContent = books.length;
+    filteredBooks = [...books];
+    currentPage = 1;
+    renderTablePage();
+  });
 });
 
 // -------------------

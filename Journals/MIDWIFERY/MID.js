@@ -15,7 +15,7 @@ import {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const bsisRef = ref(db, 'Books/CRIM');
+const bsisRef = ref(db, 'Journals/MIDWIFERY');
 const auth = getAuth(app);
 
 // DOM Elements
@@ -56,7 +56,7 @@ onAuthStateChanged(auth, (user) => {
       tableBody.innerHTML = `
         <tr>
           <td colspan="11" class="px-6 py-6 text-center text-slate-400">
-            No CRIM records found
+            No MID records found
           </td>
         </tr>`;
       books = [];
@@ -340,7 +340,7 @@ nextBtn.addEventListener('click', () => {
 window.deleteBook = function (year, bookId) {
   if (!confirm('Are you sure you want to delete this book?')) return;
 
-  const bookRef = ref(db, `Books/CRIM/${year}/${bookId}`);
+  const bookRef = ref(db, `Journals/MIDWIFERY/${year}/${bookId}`);
 
   remove(bookRef)
     .then(() => {
@@ -395,7 +395,7 @@ window.saveEdit = function () {
     Volume: document.getElementById('editVolume').value,
     Location: document.getElementById('editLocation').value,
   };
-  const bookRef = ref(db, `Books/CRIM/${year}/${bookId}`);
+  const bookRef = ref(db, `Journals/MIDWIFERY/${year}/${bookId}`);
   update(bookRef, updates)
     .then(() => {
       const index = books.findIndex((b) => b.bookId === bookId);
@@ -406,6 +406,7 @@ window.saveEdit = function () {
     })
     .catch(console.error);
 };
+
 // download pdf
 
 document.getElementById('downloadPDF').addEventListener('click', () => {
@@ -494,5 +495,5 @@ document.getElementById('downloadPDF').addEventListener('click', () => {
     tableLineColor: 180,
   });
 
-  doc.save('Criminology.pdf');
+  doc.save('Midwifery.pdf');
 });

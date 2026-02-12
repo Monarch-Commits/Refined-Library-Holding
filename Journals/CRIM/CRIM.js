@@ -15,7 +15,7 @@ import {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const bsisRef = ref(db, 'Books/CRIM');
+const bsisRef = ref(db, 'Journals/CRIM');
 const auth = getAuth(app);
 
 // DOM Elements
@@ -340,7 +340,7 @@ nextBtn.addEventListener('click', () => {
 window.deleteBook = function (year, bookId) {
   if (!confirm('Are you sure you want to delete this book?')) return;
 
-  const bookRef = ref(db, `Books/CRIM/${year}/${bookId}`);
+  const bookRef = ref(db, `Journals/CRIM/${year}/${bookId}`);
 
   remove(bookRef)
     .then(() => {
@@ -395,7 +395,7 @@ window.saveEdit = function () {
     Volume: document.getElementById('editVolume').value,
     Location: document.getElementById('editLocation').value,
   };
-  const bookRef = ref(db, `Books/CRIM/${year}/${bookId}`);
+  const bookRef = ref(db, `Journals/CRIM/${year}/${bookId}`);
   update(bookRef, updates)
     .then(() => {
       const index = books.findIndex((b) => b.bookId === bookId);

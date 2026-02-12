@@ -3,14 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library Recording System | Elegant Book Tracking</title>
+    <title>LRS | Modern Dark</title>
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -18,336 +15,174 @@
       rel="stylesheet"
     />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#6366f1', // Indigo Neon
+              accent: '#06b6d4', // Cyan
+              dark: '#020617', // Deepest Slate
+            },
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
 
-    <!-- Tailwind Config & JS -->
-    <script src="js/tailwind.config.js" defer></script>
+    <style>
+      body {
+        background-color: #020617;
+      }
+      .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .glow-shadow {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+      }
+    </style>
   </head>
-  <body class="font-display text-slate-900 antialiased">
-    <div
-      class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-white"
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <!-- Header -->
-        <header
-          class="fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white/90 px-6 py-4 whitespace-nowrap backdrop-blur-md md:px-10 lg:px-40"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="bg-primary/5 flex items-center justify-center rounded-lg p-1.5"
-            >
-              <span class="material-symbols-outlined text-primary"
-                >auto_stories</span
-              >
-            </div>
-            <h2
-              class="text-lg leading-tight font-bold tracking-tight text-slate-900"
-            >
-              LRS.
-            </h2>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <div class="hidden items-center gap-9 md:flex">
-              <a
-                class="hover:text-primary text-sm font-medium text-slate-600 transition-colors"
-                href="#"
-                >Home</a
-              >
-              <a
-                class="hover:text-primary text-sm font-medium text-slate-600 transition-colors"
-                href="#"
-                >Collections</a
-              >
-              <a
-                class="hover:text-primary text-sm font-medium text-slate-600 transition-colors"
-                href="#"
-                >About</a
-              >
-            </div>
-            <button
-              class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center rounded-lg border border-slate-200 px-5 text-sm font-bold text-slate-700 transition-all hover:bg-slate-50"
-            >
-              <a href="loginForm/login.html">Login</a>
-            </button>
-          </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="flex-1 pt-20">
-          <!-- Hero Section -->
-          <div class="@container px-4 py-12 md:px-10 md:py-16 lg:px-40">
-            <div
-              class="bg-surface-light relative overflow-hidden rounded-3xl border border-slate-100 shadow-sm"
-            >
-              <div
-                class="relative z-10 flex min-h-[520px] flex-col items-center justify-center gap-8 bg-gradient-to-b from-white/20 via-white/40 to-white/95 p-8 text-center md:min-h-[600px] md:p-12"
-              >
-                <div
-                  class="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-60 mix-blend-overlay"
-                  data-alt="Bright modern library corner"
-                  style="
-                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtxQlhrQbBbcyy3pVRkOH_EfynGCZro8HVB4QVe49XB2mSbF3Ni8oCYVgkNgJpguPLq4s0byPTcg91df4Ud-Z_LHb8O7ybJmeFZOjVem7C_-ZfClPxrvRX37gLyp2ehey8pDSwTGSGfYeD7Enz5BygqzCqgbh3DolwPSyEyhUAuMYW3aW6PergoLEsvgQeCXfhkNdrqDqo22cSe2kz_BwLe58MlhgqFISwx7agUUXo4ip8edcZ466V82xpdr3w7FuJaX8sfzLcagc');
-                  "
-                ></div>
-                <div class="flex max-w-[840px] flex-col gap-6">
-                  <h1
-                    class="font-serif text-5xl leading-tight tracking-tight text-slate-900 md:text-6xl lg:text-7xl"
-                  >
-                    Library Holding System
-                  </h1>
-                  <p
-                    class="mx-auto max-w-[640px] text-lg leading-relaxed font-normal text-slate-600 md:text-xl"
-                  >
-                    Effortlessly log, track, and archive your collection with
-                    our modern library management system. Designed for the
-                    discerning reader.
-                  </p>
-                </div>
-                <div class="flex flex-col items-center gap-4 sm:flex-row">
-                  <button
-                    class="bg-primary shadow-primary/20 flex h-12 min-w-[180px] cursor-pointer items-center justify-center rounded-lg px-8 text-base font-bold text-white shadow-lg transition-all hover:translate-y-[-1px] hover:bg-blue-600 md:h-14"
-                  >
-                    <span>Get Started Free</span>
-                  </button>
-                  <button
-                    class="flex h-12 min-w-[180px] cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white px-8 text-base font-bold text-slate-800 transition-all hover:bg-slate-50 md:h-14"
-                  >
-                    <span>Browse Demo</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Features Section -->
-          <div class="@container px-4 py-16 md:px-10 lg:px-40">
-            <div class="mb-12 flex flex-col gap-4">
-              <div class="flex items-center gap-2">
-                <div class="bg-primary/40 h-[2px] w-8"></div>
-                <span
-                  class="text-primary text-xs font-bold tracking-widest uppercase"
-                  >Features</span
-                >
-              </div>
-              <h2
-                class="font-serif text-3xl leading-tight font-bold text-slate-900 md:text-4xl"
-              >
-                Simplify Your Literary Journey
-              </h2>
-              <p class="max-w-[600px] text-lg text-slate-500">
-                Powerful tools wrapped in a minimalist interface, because your
-                focus should be on the books.
-              </p>
-            </div>
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <!-- Feature Cards -->
-              <!-- Quick Logging -->
-              <div
-                class="group flex flex-col gap-6 rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-200 hover:shadow-md"
-              >
-                <div
-                  class="text-primary flex size-14 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 transition-transform group-hover:scale-110"
-                >
-                  <span class="material-symbols-outlined !text-3xl">bolt</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                  <h3 class="text-xl font-bold text-slate-900">
-                    Quick Logging
-                  </h3>
-                  <p class="leading-relaxed text-slate-600">
-                    Fast entry for new books with automatic metadata fetching
-                    and barcode scanning.
-                  </p>
-                </div>
-              </div>
-              <!-- Digital Archive -->
-              <div
-                class="group flex flex-col gap-6 rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-200 hover:shadow-md"
-              >
-                <div
-                  class="text-primary flex size-14 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 transition-transform group-hover:scale-110"
-                >
-                  <span class="material-symbols-outlined !text-3xl"
-                    >library_books</span
-                  >
-                </div>
-                <div class="flex flex-col gap-2">
-                  <h3 class="text-xl font-bold text-slate-900">
-                    Digital Archive
-                  </h3>
-                  <p class="leading-relaxed text-slate-600">
-                    Your entire collection organized, searchable, and accessible
-                    from any device, anywhere.
-                  </p>
-                </div>
-              </div>
-              <!-- Real-time Stats -->
-              <div
-                class="group flex flex-col gap-6 rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-200 hover:shadow-md"
-              >
-                <div
-                  class="text-primary flex size-14 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 transition-transform group-hover:scale-110"
-                >
-                  <span class="material-symbols-outlined !text-3xl"
-                    >bar_chart</span
-                  >
-                </div>
-                <div class="flex flex-col gap-2">
-                  <h3 class="text-xl font-bold text-slate-900">
-                    Real-time Stats
-                  </h3>
-                  <p class="leading-relaxed text-slate-600">
-                    Visual insights into your reading velocity, favorite genres,
-                    and collection growth trends.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA Section -->
-          <div class="@container px-4 py-24 md:px-10 lg:px-40">
-            <div
-              class="relative overflow-hidden rounded-3xl bg-slate-900 p-10 text-center md:p-20"
-            >
-              <div
-                class="pointer-events-none absolute inset-0 opacity-5"
-                style="
-                  background-image: radial-gradient(
-                    circle at 2px 2px,
-                    white 1px,
-                    transparent 0
-                  );
-                  background-size: 40px 40px;
-                "
-              ></div>
-              <div class="relative z-10 flex flex-col items-center gap-8">
-                <h2
-                  class="max-w-[720px] font-serif text-3xl leading-tight font-bold text-white md:text-5xl"
-                >
-                  Ready to organize your literary universe?
-                </h2>
-                <p class="max-w-[600px] text-lg text-slate-300 md:text-xl">
-                  Join over 20,000 readers who have transformed their
-                  bookshelves into a digital library.
-                </p>
-                <button
-                  class="bg-primary shadow-primary/30 flex h-14 min-w-[200px] cursor-pointer items-center justify-center rounded-lg px-8 text-base font-bold text-white shadow-xl transition-all hover:bg-blue-600"
-                >
-                  <span>Get Started Now</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </main>
-
-        <!-- Footer -->
-        <footer
-          class="flex flex-col gap-10 border-t border-slate-100 bg-slate-50 px-6 py-16 md:px-10 lg:px-40"
-        >
-          <div
-            class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center"
-          >
-            <div class="flex max-w-sm flex-col gap-4">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-3xl"
-                  >auto_stories</span
-                >
-                <h2 class="text-xl font-bold text-slate-900">LRS.</h2>
-              </div>
-              <p class="text-sm leading-relaxed text-slate-500">
-                The modern standard for personal library organization. Built for
-                those who value their books as much as their stories.
-              </p>
-            </div>
-            <div class="grid grid-cols-2 gap-12 sm:grid-cols-3">
-              <div class="flex flex-col gap-4">
-                <h4 class="text-sm font-bold text-slate-900">Product</h4>
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Mobile App</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Features</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Pricing</a
-                >
-              </div>
-              <div class="flex flex-col gap-4">
-                <h4 class="text-sm font-bold text-slate-900">Resources</h4>
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Help Center</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >API Docs</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Guides</a
-                >
-              </div>
-              <div class="flex flex-col gap-4">
-                <h4 class="text-sm font-bold text-slate-900">Legal</h4>
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Privacy Policy</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Terms</a
-                >
-                <a
-                  class="hover:text-primary text-sm text-slate-500 transition-colors"
-                  href="#"
-                  >Cookies</a
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-6 border-t border-slate-200 pt-10 sm:flex-row"
-          >
-            <div class="flex gap-6">
-              <a
-                class="hover:text-primary text-slate-400 transition-colors"
-                href="#"
-              >
-                <span class="material-symbols-outlined">public</span>
-              </a>
-              <a
-                class="hover:text-primary text-slate-400 transition-colors"
-                href="#"
-              >
-                <span class="material-symbols-outlined">alternate_email</span>
-              </a>
-              <a
-                class="hover:text-primary text-slate-400 transition-colors"
-                href="#"
-              >
-                <span class="material-symbols-outlined">share</span>
-              </a>
-            </div>
-            <p class="text-sm text-slate-500">
-              © 2024 Library Recording System. Crafted with care for book
-              lovers.
-            </p>
-          </div>
-        </footer>
-      </div>
+  <body class="text-slate-300 antialiased">
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div
+        class="bg-primary/10 absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full blur-[120px]"
+      ></div>
+      <div
+        class="bg-accent/10 absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full blur-[120px]"
+      ></div>
     </div>
+
+    <header
+      class="bg-dark/60 fixed top-0 z-50 w-full border-b border-white/5 backdrop-blur-xl"
+    >
+      <div
+        class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+      >
+        <div class="group flex items-center gap-1">
+          <div class="relative flex items-center justify-center">
+            <div
+              class="bg-primary/20 absolute inset-0 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+            ></div>
+
+            <img
+              src="https://drive.google.com/thumbnail?id=1TUT79P_bvI0xwCUDpTKhJbwdLebM3mR2&sz=w1000"
+              alt="MIST Logo"
+              class="sm:h-16W relative h-12 w-auto min-w-[50px] object-contain transition-all duration-300 group-hover:scale-105 sm:min-w-[80px] sm:group-hover:scale-110"
+            />
+          </div>
+
+          <span
+            class="font-serif text-xl font-bold tracking-tight text-white drop-shadow-md select-none"
+          >
+            MIST
+          </span>
+        </div>
+        <button
+          class="rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+        >
+          <a href="loginForm/login.html"> Sign In</a>
+        </button>
+      </div>
+    </header>
+
+    <main class="pt-32 pb-20">
+      <section class="px-6 text-center lg:px-40">
+        <div
+          class="border-primary/20 bg-primary/5 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
+        >
+          <span class="relative flex h-2 w-2">
+            <span
+              class="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+            ></span>
+            <span
+              class="bg-primary relative inline-flex h-2 w-2 rounded-full"
+            ></span>
+          </span>
+          <span class="text-primary text-xs font-bold tracking-widest uppercase"
+            >Mist</span
+          >
+        </div>
+
+        <h1
+          class="mx-auto max-w-4xl font-serif text-5xl leading-tight font-bold text-white md:text-7xl"
+        >
+          MIST Vault, <br />
+          <span
+            class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent"
+            >Secure Your Collection.</span
+          >
+        </h1>
+
+        <p class="mx-auto mt-8 max-w-2xl text-lg text-slate-400 md:text-xl">
+          A sanctuary for your literary and digital assets. Experience a new
+          standard of recording, where elegance meets absolute organization.
+        </p>
+
+        <div
+          class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <button
+            class="h-14 w-full rounded-2xl border border-white/10 bg-white/5 px-8 font-bold text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
+          >
+            <a href="loginForm/login.html">Access Your Library</a>
+          </button>
+        </div>
+      </section>
+
+      <section class="mt-24 grid gap-6 px-6 md:grid-cols-3 lg:px-40">
+        <div
+          class="glass-card group hover:border-primary/50 rounded-3xl p-8 transition-all"
+        >
+          <div
+            class="bg-primary/10 text-primary group-hover:bg-primary mb-4 flex h-12 w-12 items-center justify-center rounded-2xl transition-all group-hover:text-white"
+          >
+            <span class="material-symbols-outlined !text-3xl"
+              >library_books</span
+            >
+          </div>
+          <h3 class="text-xl font-bold text-white">Digital Archive</h3>
+          <p class="mt-2 text-slate-400">
+            Your entire collection organized, searchable, and accessible from
+            any device.
+          </p>
+        </div>
+
+        <div
+          class="glass-card group hover:border-primary/50 rounded-3xl p-8 transition-all"
+        >
+          <div
+            class="bg-accent/10 text-accent group-hover:bg-accent mb-4 flex h-12 w-12 items-center justify-center rounded-2xl transition-all group-hover:text-white"
+          >
+            <span class="material-symbols-outlined !text-3xl">bolt</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Quick Logging</h3>
+          <p class="mt-2 text-slate-400">
+            Fast entry for new books with automatic metadata fetching.
+          </p>
+        </div>
+
+        <div
+          class="glass-card group hover:border-primary/50 rounded-3xl p-8 transition-all"
+        >
+          <div
+            class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-500 transition-all group-hover:bg-emerald-500 group-hover:text-white"
+          >
+            <span class="material-symbols-outlined">cloud_done</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Cloud Sync</h3>
+          <p class="mt-2 text-slate-400">
+            Access your library on any device, anywhere in the world.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/5 py-12 text-center">
+      <p class="text-sm text-slate-500">© 2026 Library Recording System.</p>
+    </footer>
   </body>
 </html>

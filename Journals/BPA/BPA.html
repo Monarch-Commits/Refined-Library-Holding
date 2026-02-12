@@ -1,0 +1,571 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>BPA Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#197fe6',
+              'background-light': '#f6f7f8',
+              'background-dark': '#111921',
+            },
+            fontFamily: {
+              display: ['Lexend', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Lexend', sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+      }
+      /* Custom scrollbar for a cleaner look */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1c2126;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3c4753;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #197fe6;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100"
+  >
+    <div
+      class="group/design-root relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Top Navigation Bar -->
+        <header
+          class="dark:bg-background-dark sticky top-0 z-50 flex items-center justify-between border-b border-solid border-slate-200 bg-white px-6 py-3 whitespace-nowrap dark:border-slate-800"
+        >
+          <div class="flex items-center gap-8">
+            <div class="text-primary flex items-center gap-3">
+              <div
+                class="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-purple-50 text-purple-500 transition-all group-hover:bg-purple-500 group-hover:text-white"
+              >
+                <i class="fas fa-briefcase"></i>
+              </div>
+
+              <h2
+                class="text-xl leading-tight font-bold tracking-tight text-slate-900 dark:text-white"
+              >
+                BPA
+              </h2>
+            </div>
+            <div class="ml-4 hidden items-center gap-6 md:flex">
+              <a
+                class="text-primary border-primary border-b-2 pb-1 text-sm font-semibold"
+                href="#"
+                >Dashboard</a
+              >
+            </div>
+          </div>
+          <div class="flex flex-1 justify-end gap-4">
+            <div class="flex items-center gap-2">
+              <div>
+                <button
+                  id="downloadPDF"
+                  class="bg-primary hover:bg-primary/90 flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-bold text-white shadow-sm transition-all"
+                >
+                  <span class="material-symbols-outlined text-lg"
+                    >picture_as_pdf</span
+                  >
+                  <span class="truncate">Export PDF</span>
+                </button>
+                <table class="hidden min-w-full text-sm">
+                  <thead>
+                    <tr>
+                      <th>Call Number</th>
+                      <th>Book Name</th>
+                      <th>Book Year</th>
+                      <th>Author</th>
+                      <th>Subject Related</th>
+                      <th>Place of Publication</th>
+                      <th>Type</th>
+                      <th>Volume</th>
+                      <th>Curriculum Year</th>
+                      <th>Location</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="TableForPDF">
+                    <!-- dito napupunta ang rows galing JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </header>
+        <!-- Main Content Container -->
+        <main class="mx-auto w-full max-w-[1600px] px-6 py-8 md:px-10 lg:px-16">
+          <!-- Page Header & Stats -->
+          <div
+            class="mb-8 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center"
+          >
+            <div class="flex flex-col gap-1">
+              <h1
+                class="text-4xl leading-tight font-extrabold tracking-tight text-slate-900 dark:text-white"
+              >
+                BPA Library Holdings
+              </h1>
+              <p
+                class="text-base font-normal text-slate-500 dark:text-slate-400"
+              >
+                Efficient monitoring of business administration and management
+                collections.
+              </p>
+            </div>
+            <div class="flex w-full gap-4 lg:w-auto">
+              <div
+                class="flex min-w-[180px] flex-1 flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+              >
+                <p
+                  class="mb-1 text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400"
+                >
+                  Total Volume of Books
+                </p>
+                <p
+                  id="totalVolume"
+                  class="text-primary text-3xl leading-tight font-black"
+                ></p>
+              </div>
+            </div>
+          </div>
+          <!-- Tabs/Filters Section -->
+          <div class="mb-6">
+            <div
+              class="flex justify-between gap-8 overflow-x-auto border-b border-slate-200 px-2 dark:border-slate-800"
+            >
+              <div class="flex gap-3">
+                <button
+                  class="flex items-center gap-2 border-b-2 border-transparent px-1 pb-3 text-slate-500 transition-all hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  id="allRecord"
+                >
+                  <span class="material-symbols-outlined text-lg"
+                    >list_alt</span
+                  >
+                  <span class="text-sm font-bold">All Records</span>
+                </button>
+
+                <button
+                  id="outdatedBooks"
+                  class="flex items-center gap-2 border-b-2 border-transparent px-1 pb-3 text-slate-500 transition-all hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                >
+                  <span class="material-symbols-outlined text-lg">warning</span>
+                  <span class="text-sm font-bold hover:text-red-600"
+                    >Older than 10 Years</span
+                  >
+                </button>
+              </div>
+              <!-- SEARCH + FILTER -->
+              <label class="sticky flex h-10 w-full max-w-2xl min-w-[260px]">
+                <div
+                  class="flex h-full w-full items-stretch overflow-hidden rounded-lg"
+                >
+                  <!-- FILTER -->
+                  <div
+                    class="flex items-center gap-2 bg-slate-100 px-3 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                  >
+                    <label
+                      for="filterOption"
+                      class="text-xs font-medium text-slate-600 dark:text-slate-300"
+                    >
+                      Filter:
+                    </label>
+
+                    <select
+                      id="filterOption"
+                      name="filterOption"
+                      class="rounded-md bg-transparent text-sm text-slate-800 outline-none dark:text-slate-100"
+                    >
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="CallNumber"
+                      >
+                        Call Number
+                      </option>
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="bookName"
+                      >
+                        Book Name
+                      </option>
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="recency"
+                      >
+                        Book Year
+                      </option>
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="author"
+                      >
+                        Author
+                      </option>
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="Subject"
+                      >
+                        Subject Related
+                      </option>
+                      <option
+                        class="bg-slate-800 text-slate-100"
+                        value="PlaceofPublication"
+                      >
+                        Place of Publication
+                      </option>
+                      <option class="bg-slate-800 text-slate-100" value="type">
+                        Type
+                      </option>
+                      <option class="bg-slate-800 text-slate-100" value="year">
+                        Curriculum Year
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- ICON -->
+                  <div
+                    class="flex items-center justify-center bg-slate-100 px-3 text-slate-400 dark:bg-slate-800 dark:text-slate-300"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >search</span
+                    >
+                  </div>
+
+                  <!-- INPUT -->
+                  <input
+                    id="searchInput"
+                    placeholder="Search by Filter..."
+                    class="focus:ring-primary/50 flex-1 rounded-md bg-slate-100 px-4 text-sm text-slate-900 outline-none placeholder:text-slate-500 focus:ring-2 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400"
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- Table Container -->
+          <div
+            class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900"
+          >
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse text-left">
+                <thead class="text-center">
+                  <tr
+                    class="bg-slate-50 text-slate-400 dark:bg-slate-800/50 dark:text-slate-200"
+                  >
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Call Number
+                    </th>
+                    <th
+                      class="min-w-[250px] px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Book Name
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Book Year
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Author
+                    </th>
+                    <th
+                      class="min-w-[250px] px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Subject Related
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Place of Publication
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Type
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Volume
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Curriculum Year
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold tracking-wider uppercase"
+                    >
+                      Location
+                    </th>
+                    <th
+                      class="px-6 py-4 text-right text-xs font-bold tracking-wider uppercase"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="bsisTable"
+                  class="divide-y divide-slate-100 dark:divide-slate-800"
+                >
+                  <!-- Tr Td Diare -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination / Footer -->
+            <div
+              class="flex w-auto items-center justify-between border-t border-slate-100 bg-slate-50/50 px-6 py-4 dark:border-slate-800 dark:bg-slate-800/20"
+            >
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                Showing
+                <span
+                  id="pageStart"
+                  class="font-bold text-slate-900 dark:text-white"
+                ></span>
+                to
+                <span
+                  id="pageEnd"
+                  class="font-bold text-slate-900 dark:text-white"
+                ></span>
+                of
+                <span
+                  id="totalEntries"
+                  class="font-bold text-slate-900 dark:text-white"
+                ></span>
+                entries
+              </p>
+
+              <!-- Page Buttons -->
+              <div id="pageContainer" class="flex items-center gap-2">
+                <!-- Previous -->
+                <button
+                  id="prevBtn"
+                  class="flex h-8 w-8 items-center justify-center rounded border border-slate-200 text-slate-400 hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_left</span
+                  >
+                </button>
+
+                <!-- Next -->
+                <button
+                  id="nextBtn"
+                  class="flex h-8 w-8 items-center justify-center rounded border border-slate-200 text-slate-400 hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_right</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- EDIT BOOK MODAL -->
+    <div
+      id="editModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    >
+      <!-- Modal Card -->
+      <div
+        class="w-full max-w-[800px] overflow-hidden rounded-xl border bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+      >
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between border-b px-8 py-6 dark:border-slate-700"
+        >
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-2xl">
+              edit_note
+            </span>
+            <h2
+              class="text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-100"
+            >
+              Edit Book Details
+            </h2>
+          </div>
+
+          <button
+            onclick="closeModal()"
+            class="rounded-md px-3 py-1.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-700"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-8">
+          <form class="space-y-6">
+            <!-- Book Name -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+              >
+                Book Name
+              </label>
+              <input
+                id="editBookName"
+                type="text"
+                placeholder="Enter complete book title"
+                class="focus:ring-primary h-12 w-full rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+              />
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold">Call Number</label>
+                <input
+                  id="editCallNumber"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold">Author</label>
+                <input
+                  id="editAuthor"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold">Book Year</label>
+                <input
+                  id="editPubYear"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold"
+                  >Place of Publication</label
+                >
+                <input
+                  id="editPlace"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold">Type of Book</label>
+                <select
+                  id="editType"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                >
+                  <option value="Textbook">Textbook</option>
+                  <option value="Reference Book">Reference Book</option>
+                  <option value="E-book">E-book</option>
+                  <option value="Book">Book</option>
+                  <option value="Scholarly Books">Scholarly Books</option>
+                  <option value="Fiction Books">Fiction Books</option>
+                  <option value="Non-Fiction Books" class="whitespace-nowrap">
+                    Non-Fiction Books
+                  </option>
+                  <option value="Biographies">Biographies</option>
+                  <option value="Poetry Books">Poetry Books</option>
+                  <option value="Cookbooks">Cookbooks</option>
+                  <option value="Self-Help Books">Self-Help Books</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold">Volume</label>
+                <input
+                  id="editVolume"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2 md:col-span-2">
+                <label class="text-sm font-semibold">Physical Location</label>
+                <input
+                  id="editLocation"
+                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="flex justify-end gap-3 border-t px-6 py-4 dark:border-slate-700"
+        >
+          <button
+            onclick="closeModal()"
+            class="rounded-lg bg-slate-200 px-4 py-2 dark:bg-slate-700"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="saveEdit()"
+            class="bg-primary rounded-lg px-4 py-2 text-white"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- For Download PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="./BPA.js"></script>
+  </body>
+</html>
