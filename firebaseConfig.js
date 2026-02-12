@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAh6gTmwbhETkBIWgKDsBS-ItoxnMmxelw',
+  apiKey: 'AIzaSyAiWJh__7Bt5f_q3gQzWTrcoiCzyIkF0l4',
   authDomain: 'monarch-a11f9.firebaseapp.com',
   databaseURL: 'https://monarch-a11f9-default-rtdb.firebaseio.com',
   projectId: 'monarch-a11f9',
