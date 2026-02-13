@@ -162,8 +162,6 @@ function add() {
 
 saveButton.addEventListener('click', add);
 
-// --- Rest of your UI Logic ---
-
 document.getElementById('menu').addEventListener('click', () => {
   document.getElementById('for').classList.remove('hidden-sidebar');
 });
