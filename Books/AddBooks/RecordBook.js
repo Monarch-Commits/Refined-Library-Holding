@@ -19,17 +19,47 @@ const auth = getAuth();
 
 const logoutButton = document.getElementById('logout');
 
+// --- Reusable Dark Style ---
+const swalDarkOptions = {
+  background: '#0f172a', // your dark color
+  color: '#f8fafc', // light text
+  confirmButtonColor: '#0ea5e9', // primary blue
+  cancelButtonColor: '#64748b', // slate grey
+};
+
 logoutButton.addEventListener('click', function () {
-  if (confirm('Are you sure you want to logout?')) {
-    signOut(auth)
-      .then(() => {
-        alert('Successfully logged out');
-        window.location.href = '/index.html';
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }
+  Swal.fire({
+    ...swalDarkOptions,
+    title: 'Logout?',
+    text: 'Are you sure you want to logout?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, logout',
+    cancelButtonText: 'Cancel',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      signOut(auth)
+        .then(() => {
+          Swal.fire({
+            ...swalDarkOptions,
+            title: 'Logged Out!',
+            icon: 'success',
+            timer: 1500,
+            showConfirmButton: false,
+          }).then(() => {
+            window.location.href = '/index.html';
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            ...swalDarkOptions,
+            title: 'Error',
+            text: error.message,
+            icon: 'error',
+          });
+        });
+    }
+  });
 });
 
 onAuthStateChanged(auth, (user) => {
@@ -37,14 +67,11 @@ onAuthStateChanged(auth, (user) => {
     window.location.href = '../../loginForm/login.html';
   } else {
     console.log('Authenticated as:', user.uid);
-    startFetchingBooks(); // 👈 call your database logic here
   }
 });
 
 function add() {
   const btnOriginalText = saveButton.innerHTML;
-  saveButton.disabled = true;
-  saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SAVING...';
 
   const CallNumber = document.getElementById('CallNumber').value;
   const bookName = document.getElementById('BookName').value;
@@ -70,13 +97,17 @@ function add() {
     !Volume ||
     selectedCourses.length === 0
   ) {
-    alert(
-      'Please fill out all required fields and select at least one program.',
-    );
-    saveButton.disabled = false;
-    saveButton.innerHTML = btnOriginalText;
+    Swal.fire({
+      ...swalDarkOptions,
+      icon: 'info',
+      title: 'Missing Fields',
+      text: 'Please fill out all required fields and select at least one program.',
+    });
     return;
   }
+
+  saveButton.disabled = true;
+  saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SAVING...';
 
   const promises = selectedCourses.map((course) => {
     return push(ref(db, `Books/${course}/${selectedYear}`), {
@@ -94,8 +125,15 @@ function add() {
 
   Promise.all(promises)
     .then(() => {
-      alert('Successfully added to selected programs!');
-      // Reset fields
+      Swal.fire({
+        ...swalDarkOptions,
+        icon: 'success',
+        title: 'Success!',
+        text: 'Successfully added to selected programs!',
+        timer: 1800,
+        showConfirmButton: false,
+      });
+
       [
         'CallNumber',
         'BookName',
@@ -108,7 +146,14 @@ function add() {
         document.getElementById(id).value = '';
       });
     })
-    .catch((error) => alert(error.message))
+    .catch((error) => {
+      Swal.fire({
+        ...swalDarkOptions,
+        icon: 'error',
+        title: 'Database Error',
+        text: error.message,
+      });
+    })
     .finally(() => {
       saveButton.disabled = false;
       saveButton.innerHTML = btnOriginalText;
@@ -117,7 +162,8 @@ function add() {
 
 saveButton.addEventListener('click', add);
 
-// Sidebar Toggles
+// --- Rest of your UI Logic ---
+
 document.getElementById('menu').addEventListener('click', () => {
   document.getElementById('for').classList.remove('hidden-sidebar');
 });
@@ -125,7 +171,6 @@ document.getElementById('closeMenu').addEventListener('click', () => {
   document.getElementById('for').classList.add('hidden-sidebar');
 });
 
-// Alphabetical sort of subjects
 window.addEventListener('load', () => {
   const subjectSelect = document.getElementById('Subject');
   const options = Array.from(subjectSelect.options);
@@ -133,13 +178,12 @@ window.addEventListener('load', () => {
   subjectSelect.innerHTML = '';
   options.forEach((option) => subjectSelect.add(option));
 
-  // Mobile initial state
   if (window.innerWidth < 768) {
     document.getElementById('for').classList.add('hidden-sidebar');
   }
 });
 
-// Tailwind
+// Tailwind Config
 tailwind.config = {
   theme: {
     extend: {
@@ -167,15 +211,11 @@ function renderSubjects(list) {
 
 renderSubjects(subjects);
 
-// Search
 const searchInput = document.getElementById('subjectSearch');
-
 searchInput.addEventListener('input', () => {
   const keyword = searchInput.value.toLowerCase();
-
   const filtered = subjects.filter((subject) =>
     subject.toLowerCase().includes(keyword),
   );
-
   renderSubjects(filtered);
 });
