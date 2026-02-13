@@ -64,7 +64,7 @@ logoutButton.addEventListener('click', function () {
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = '../../loginForm/login.html';
+    window.location.href = '/index.html';
   } else {
     console.log('Authenticated as:', user.uid);
   }
