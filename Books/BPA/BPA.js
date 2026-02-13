@@ -338,28 +338,51 @@ nextBtn.addEventListener('click', () => {
 // DELETE BOOK
 
 window.deleteBook = function (year, bookId) {
-  if (!confirm('Are you sure you want to delete this book?')) return;
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
 
-  const bookRef = ref(db, `Books/BPA/${year}/${bookId}`);
+    background: '#0f172a',
+    color: '#f8fafc',
+    iconColor: '#f59e0b',
+    confirmButtonColor: '#ef4444',
+    cancelButtonColor: '#64748b',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const bookRef = ref(db, `Books/BPA/${year}/${bookId}`);
 
-  remove(bookRef)
-    .then(() => {
-      // 1. Alert the user
-      alert('Book successfully deleted!');
+      remove(bookRef)
+        .then(() => {
+          books = books.filter((b) => b.bookId !== bookId);
+          filteredBooks = filteredBooks.filter((b) => b.bookId !== bookId);
+          renderTablePage();
 
-      // 2. Update local arrays
-      books = books.filter((b) => b.bookId !== bookId);
-      filteredBooks = filteredBooks.filter((b) => b.bookId !== bookId);
-
-      // 3. Re-render UI
-      renderTablePage();
-    })
-    .catch((error) => {
-      console.error('Delete failed: ', error);
-      alert('Failed to delete book. Please try again.');
-    });
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'The record has been successfully deleted.',
+            icon: 'success',
+            background: '#0f172a',
+            color: '#f8fafc',
+            confirmButtonColor: '#3b82f6',
+          });
+        })
+        .catch((error) => {
+          console.error('Delete failed: ', error);
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete the record. Please try again.',
+            icon: 'error',
+            background: '#0f172a',
+            color: '#f8fafc',
+          });
+        });
+    }
+  });
 };
-// -------------------
 // EDIT MODAL
 // -------------------
 window.openModal = () =>
@@ -382,8 +405,39 @@ window.openEditModal = function (bookId) {
   openModal();
 };
 
+window.openModal = () =>
+  document.getElementById('editModal').classList.remove('hidden');
+window.closeModal = () =>
+  document.getElementById('editModal').classList.add('hidden');
+
+window.openEditModal = function (bookId) {
+  const book = books.find((b) => b.bookId === bookId);
+  if (!book) return;
+  document.getElementById('editBookName').value = book.bookName || '';
+  document.getElementById('editCallNumber').value = book.CallNumber || '';
+  document.getElementById('editAuthor').value = book.author || '';
+  document.getElementById('editPubYear').value = book.recency || '';
+  document.getElementById('editPlace').value = book.PlaceofPublication || '';
+  document.getElementById('editType').value = book.type || '';
+  document.getElementById('editVolume').value = book.Volume || '';
+  document.getElementById('editLocation').value = book.Location || '';
+  window.currentEdit = { bookId, year: book.year };
+  openModal();
+};
+
 window.saveEdit = function () {
-  if (!window.currentEdit) return alert('No book selected!');
+  if (!window.currentEdit) return;
+
+  Swal.fire({
+    title: 'Saving changes...',
+    allowOutsideClick: false,
+    background: '#0f172a',
+    color: '#f8fafc',
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
   const { bookId, year } = window.currentEdit;
   const updates = {
     bookName: document.getElementById('editBookName').value,
@@ -395,16 +449,42 @@ window.saveEdit = function () {
     Volume: document.getElementById('editVolume').value,
     Location: document.getElementById('editLocation').value,
   };
+
   const bookRef = ref(db, `Books/BPA/${year}/${bookId}`);
+
   update(bookRef, updates)
     .then(() => {
       const index = books.findIndex((b) => b.bookId === bookId);
-      books[index] = { ...books[index], ...updates };
+      if (index !== -1) {
+        books[index] = { ...books[index], ...updates };
+      }
       filteredBooks = [...books];
+
       renderTablePage();
       closeModal();
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated!',
+        text: 'The book details have been saved successfully.',
+        timer: 2000,
+        showConfirmButton: false,
+        background: '#0f172a',
+        color: '#f8fafc',
+        iconColor: '#22c55e',
+      });
     })
-    .catch(console.error);
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong: ' + error.message,
+        background: '#0f172a',
+        color: '#f8fafc',
+        confirmButtonColor: '#3b82f6',
+      });
+    });
 };
 
 // download pdf

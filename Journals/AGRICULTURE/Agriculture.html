@@ -23,6 +23,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <!-- for alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script id="tailwind-config">
       tailwind.config = {
@@ -431,22 +433,22 @@
     <!-- EDIT BOOK MODAL -->
     <div
       id="editModal"
-      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+      class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/60 p-2 backdrop-blur-sm sm:p-4"
     >
-      <!-- Modal Card -->
       <div
-        class="w-full max-w-[800px] overflow-hidden rounded-xl border bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+        class="relative flex max-h-[95vh] w-full max-w-[800px] flex-col overflow-hidden rounded-xl border bg-white shadow-2xl sm:max-h-[90vh] dark:border-slate-700 dark:bg-slate-900"
       >
-        <!-- Header -->
         <div
-          class="flex items-center justify-between border-b px-8 py-6 dark:border-slate-700"
+          class="flex items-center justify-between border-b px-5 py-4 sm:px-8 sm:py-6 dark:border-slate-700"
         >
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-2xl">
+            <span
+              class="material-symbols-outlined text-primary text-xl sm:text-2xl"
+            >
               edit_note
             </span>
             <h2
-              class="text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-100"
+              class="text-lg font-bold tracking-tight text-gray-900 sm:text-2xl dark:text-slate-100"
             >
               Edit Book Details
             </h2>
@@ -454,17 +456,15 @@
 
           <button
             onclick="closeModal()"
-            class="rounded-md px-3 py-1.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-700"
+            class="rounded-md p-2 text-sm font-semibold text-gray-500 transition-colors hover:bg-gray-100 dark:text-slate-400 dark:hover:bg-slate-800"
           >
-            ✕
+            <span class="text-xl">✕</span>
           </button>
         </div>
 
-        <!-- Body -->
-        <div class="p-8">
-          <form class="space-y-6">
-            <!-- Book Name -->
-            <div class="flex flex-col gap-2">
+        <div class="flex-1 overflow-y-auto p-5 sm:p-8">
+          <form id="editForm" class="space-y-5 sm:space-y-6">
+            <div class="flex flex-col gap-1.5">
               <label
                 class="text-sm font-semibold text-gray-700 dark:text-gray-300"
               >
@@ -474,51 +474,66 @@
                 id="editBookName"
                 type="text"
                 placeholder="Enter complete book title"
-                class="focus:ring-primary h-12 w-full rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                class="focus:ring-primary h-11 w-full rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
               />
             </div>
 
-            <!-- Grid -->
-            <div class="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold">Call Number</label>
+            <div
+              class="grid grid-cols-1 gap-4 sm:gap-x-8 sm:gap-y-6 md:grid-cols-2"
+            >
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Call Number</label
+                >
                 <input
                   id="editCallNumber"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold">Author</label>
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Author</label
+                >
                 <input
                   id="editAuthor"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold">Book Year</label>
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Book Year</label
+                >
                 <input
                   id="editPubYear"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  type="number"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold"
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
                   >Place of Publication</label
                 >
                 <input
                   id="editPlace"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold">Type of Book</label>
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Type of Book</label
+                >
                 <select
                   id="editType"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 >
                   <option value="Textbook">Textbook</option>
                   <option value="Reference Book">Reference Book</option>
@@ -536,38 +551,43 @@
                 </select>
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold">Volume</label>
+              <div class="flex flex-col gap-1.5">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Volume</label
+                >
                 <input
                   id="editVolume"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
 
-              <div class="flex flex-col gap-2 md:col-span-2">
-                <label class="text-sm font-semibold">Physical Location</label>
+              <div class="flex flex-col gap-1.5 md:col-span-2">
+                <label
+                  class="text-sm font-semibold text-gray-700 dark:text-gray-300"
+                  >Physical Location</label
+                >
                 <input
                   id="editLocation"
-                  class="focus:ring-primary h-12 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-800"
+                  class="focus:ring-primary h-11 rounded-lg border bg-gray-50 px-4 outline-none focus:ring-2 sm:h-12 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
               </div>
             </div>
           </form>
         </div>
 
-        <!-- Footer -->
         <div
-          class="flex justify-end gap-3 border-t px-6 py-4 dark:border-slate-700"
+          class="flex flex-col-reverse justify-end gap-2 border-t bg-gray-50 px-5 py-4 sm:flex-row sm:gap-3 sm:px-6 dark:border-slate-700 dark:bg-slate-800/50"
         >
           <button
             onclick="closeModal()"
-            class="rounded-lg bg-slate-200 px-4 py-2 dark:bg-slate-700"
+            class="w-full rounded-lg bg-slate-200 px-5 py-2.5 font-medium text-gray-700 transition-colors hover:bg-slate-300 sm:w-auto dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
           >
             Cancel
           </button>
           <button
             onclick="saveEdit()"
-            class="bg-primary rounded-lg px-4 py-2 text-white"
+            class="w-full rounded-lg bg-blue-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-blue-500/30 transition-all hover:bg-blue-700 active:scale-95 sm:w-auto"
           >
             Save Changes
           </button>

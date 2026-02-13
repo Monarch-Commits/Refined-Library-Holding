@@ -338,28 +338,51 @@ nextBtn.addEventListener('click', () => {
 // DELETE BOOK
 
 window.deleteBook = function (year, bookId) {
-  if (!confirm('Are you sure you want to delete this book?')) return;
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
 
-  const bookRef = ref(db, `Books/GENERAL ACADEMIC/${year}/${bookId}`);
+    background: '#0f172a',
+    color: '#f8fafc',
+    iconColor: '#f59e0b',
+    confirmButtonColor: '#ef4444',
+    cancelButtonColor: '#64748b',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const bookRef = ref(db, `Books/GENERAL ACADEMIC/${year}/${bookId}`);
 
-  remove(bookRef)
-    .then(() => {
-      // 1. Alert the user
-      alert('Book successfully deleted!');
+      remove(bookRef)
+        .then(() => {
+          books = books.filter((b) => b.bookId !== bookId);
+          filteredBooks = filteredBooks.filter((b) => b.bookId !== bookId);
+          renderTablePage();
 
-      // 2. Update local arrays
-      books = books.filter((b) => b.bookId !== bookId);
-      filteredBooks = filteredBooks.filter((b) => b.bookId !== bookId);
-
-      // 3. Re-render UI
-      renderTablePage();
-    })
-    .catch((error) => {
-      console.error('Delete failed: ', error);
-      alert('Failed to delete book. Please try again.');
-    });
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'The record has been successfully deleted.',
+            icon: 'success',
+            background: '#0f172a',
+            color: '#f8fafc',
+            confirmButtonColor: '#3b82f6',
+          });
+        })
+        .catch((error) => {
+          console.error('Delete failed: ', error);
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete the record. Please try again.',
+            icon: 'error',
+            background: '#0f172a',
+            color: '#f8fafc',
+          });
+        });
+    }
+  });
 };
-// -------------------
 // EDIT MODAL
 // -------------------
 window.openModal = () =>
