@@ -46,7 +46,6 @@ the subjects.
 
 ![Firebase Database](https://img.shields.io/badge/Firebase%20Database-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![Firebase Auth](https://img.shields.io/badge/Firebase%20Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![Firebase Hosting](https://img.shields.io/badge/Firebase%20Hosting-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
 • Tools
 
