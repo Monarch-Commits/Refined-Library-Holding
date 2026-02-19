@@ -33,21 +33,21 @@ of the books, and journals associated with the subjects of all programs.
 subjects of the program. This will allow efficient monitoring of books associated with 
 the subjects.
 
-5. Tech Stack
+## 5. Tech Stack
 
-• Frontend
+### Frontend
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-• Backend / Database
+### Backend / Database
 
 ![Firebase Database](https://img.shields.io/badge/Firebase%20Database-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![Firebase Auth](https://img.shields.io/badge/Firebase%20Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![Firebase Hosting](https://img.shields.io/badge/Firebase%20Hosting-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
-• Tools
+### Tools
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
