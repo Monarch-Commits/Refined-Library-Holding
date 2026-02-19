@@ -1,17 +1,15 @@
-Library Holding System
-
-1. Project Title
+## Project Title
 
 Library Holding System
 
-2. Project Description
+## Project Description
 
 The Library Holding System is a web-based application designed to manage and monitor library collections efficiently. It allows librarians to record, update, organize, and generate reports for books and journals stored in the library.
 
 The system focuses on centralized collection management, ensuring that all library holdings are properly recorded, categorized, and easily accessible. It also helps monitor outdated materials and supports structured data organization using Firebase as the backend service.
 
 
-3. Features
+## Features
 
 - Add, edit, and delete library book records
 - Record book and journal collections separately
@@ -21,7 +19,7 @@ The system focuses on centralized collection management, ensuring that all libra
 - Secure authentication
 - Cloud-based data storage
 
-4. System Objectives
+## System Objectives
 
 • To develop a system that could easily generate reports for all collections of books 
 and journals in the library for library holdings.
@@ -31,9 +29,10 @@ of the books, and journals associated with the subjects of all programs.
 
 • To develop a system that will allow the association of books and journals for all 
 subjects of the program. This will allow efficient monitoring of books associated with 
+
 the subjects.
 
-## 5. Tech Stack
+## Tech Stack
 
 ### Frontend
 
