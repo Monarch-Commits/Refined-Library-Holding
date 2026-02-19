@@ -1,4 +1,4 @@
-# Library Holding System
+Library Holding System
 
 1. Project Title
 
@@ -43,9 +43,10 @@ the subjects.
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
 • Backend / Database
-- Firebase Realtime Database
-- Firebase Authentication
-- Firebase Hosting
+
+![Firebase Database](https://img.shields.io/badge/Firebase%20Database-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![Firebase Auth](https://img.shields.io/badge/Firebase%20Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![Firebase Hosting](https://img.shields.io/badge/Firebase%20Hosting-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
 • Tools
 - Git & GitHub
