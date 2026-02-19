@@ -73,7 +73,7 @@ code .
 
 ### 3️⃣ Connect Firebase Configuration
 
-Create or open your `firebase.js` file and insert your configuration:
+Create or open your `firebaseConfig.js` file and insert your configuration:
 
 ```javascript
 export const firebaseConfig = {
@@ -104,66 +104,124 @@ For better development experience, use **Live Server** in VS Code.
 
 ---
 
-## 🌐 Deployment (Optional)
+## 🌐 Deployment using Firebase Hosting
 
-You can deploy this project using Firebase Hosting.
+Follow these steps to deploy the project to Firebase Hosting.
 
-Install Firebase CLI:
+---
+
+### 1️⃣ Install Firebase CLI
+
+Make sure Node.js is installed, then run:
 
 ```bash
 npm install -g firebase-tools
 ```
 
-Login to Firebase:
+Verify installation:
+
+```bash
+firebase --version
+```
+
+---
+
+### 2️⃣ Login to Firebase
 
 ```bash
 firebase login
 ```
 
-Initialize Firebase:
+A browser window will open. Sign in using your Google account.
+
+---
+
+### 3️⃣ Initialize Firebase in the Project
+
+Inside your project folder, run:
 
 ```bash
 firebase init
 ```
 
-Deploy the project:
+You will be prompted with several options:
+
+- Select: **Hosting**
+- Choose: **Use an existing project**
+- Select your Firebase project
+- Set public directory to:  
+  ```
+  .
+  ```
+  (since this is a plain HTML project)
+
+- Configure as a single-page app (SPA)?  
+  ```
+  No
+  ```
+- Set up automatic builds and deploys with GitHub?  
+  ```
+  No
+  ```
+- Overwrite index.html?  
+  ```
+  No
+  ```
+
+After this, Firebase will generate:
+
+- `firebase.json`
+- `.firebaserc`
+
+---
+
+### 4️⃣ Deploy the Project
+
+Run:
 
 ```bash
 firebase deploy
 ```
 
+If successful, you will see something like:
+
+```
+Hosting URL: https://your-project-id.web.app
+```
+
+Open that URL in your browser to view your live system.
+
 ---
 
-## 📂 Project Structure
+### 5️⃣ Future Updates
 
-```
-Refined-Library-Holding/
-│
-├── index.html
-├── login.html
-├── script.js
-├── firebase.js
-├── styles.css
-└── firebase.json
+Whenever you update your project, simply run:
+
+```bash
+firebase deploy
 ```
 
+to publish changes.
 ---
 
 ## 🔐 Security Notes
 
-- Do not expose your real Firebase API keys in public repositories.
-- Use proper Firebase security rules for production environments.
-- Always restrict database read/write permissions.
+- Firebase API keys are safe to expose in client-side applications, but they should only be used with proper security rules.
+- Always configure Firebase Realtime Database or Firestore security rules properly.
+- Restrict database read/write permissions to authenticated users.
+- Never allow public write access in production.
+- Enable proper authentication methods to secure user access.
 
 ---
 
 ## 👨‍💻 Author
 
 Developed by Monarch  
-Library Holdings Management System Project
+Library Holdings System Project
 
 ---
 
 ## 📜 License
 
 This project is for academic and educational purposes.
+
